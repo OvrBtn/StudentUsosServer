@@ -1,0 +1,6 @@
+@StudenckiUSOSAPI_HostAddress = http://localhost:5236
+
+GET {{StudenckiUSOSAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

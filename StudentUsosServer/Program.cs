@@ -27,6 +27,7 @@ builder.Services.ConfigureOptions<SwaggerConfigureOptions>();
 builder.ConfigureVersioning();
 
 builder.RegisterServices();
+builder.RegisterRepositories();
 
 await builder.InitializeConstants();
 

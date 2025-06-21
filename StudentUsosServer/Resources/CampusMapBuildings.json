@@ -1,0 +1,223 @@
+[
+  {
+    "Id": "A1",
+    "Name": {
+      "pl": "Wydział Budowy Maszyn i Zarządzania",
+      "en": "Faculty of Machine Building and Management"
+    },
+    "Floors": [ "-1", "0" ]
+  },
+  {
+    "Id": "A1a",
+    "Name": {
+      "pl": "Łącznik",
+      "en": ""
+    },
+    "Floors": [ "-1" ]
+  },
+  {
+    "Id": "A2",
+    "Name": {
+      "pl": "Wydział Inżynierii Środowiska i Energetyki",
+      "en": ""
+    },
+    "Floors": [ "-1", "0", "1", "2" ]
+  },
+  {
+    "Id": "A3",
+    "Name": {
+      "pl": "Wydział Elektryczny",
+      "en": ""
+    },
+    "Floors": [ "-1", "0" ]
+  },
+  {
+    "Id": "A4",
+    "Name": {
+      "pl": "Środowiskowe Laboratorium Budownictwa",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A5",
+    "Name": {
+      "pl": "Centrum Mechatroniki Biomechaniki i Nanoinżynierii",
+      "en": ""
+    },
+    "Floors": [ "0", "1", "2", "3", "4" ]
+  },
+  {
+    "Id": "A6",
+    "Name": {
+      "pl": "Budynek laboratoryjno-dydaktyczny",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A8",
+    "Name": {
+      "pl": "Budynek trafostacji",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A15",
+    "Name": {
+      "pl": "Hala nr 1",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A16",
+    "Name": {
+      "pl": "Hala, Symulator",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A17",
+    "Name": {
+      "pl": "Hala, Stacja Kontroli Pojazdów",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A20",
+    "Name": {
+      "pl": "Hala",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A21",
+    "Name": {
+      "pl": "Hala nr 19",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A21a",
+    "Name": {
+      "pl": "Hala nr 20",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A21b",
+    "Name": {
+      "pl": "Hala nr 21",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A22",
+    "Name": {
+      "pl": "Hala nr 22",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A22a",
+    "Name": {
+      "pl": "Hala nr 23",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A22b",
+    "Name": {
+      "pl": "Hala nr 24",
+      "en": ""
+    }
+  },
+  {
+    "Id": "A23",
+    "Name": {
+      "pl": "Centrum Wykładowo-Konferencyjne",
+      "en": ""
+    },
+    "Floors": [ "0", "1" ]
+  },
+  {
+    "Id": "A23a",
+    "Name": {
+      "pl": "Bibliotek Techniczna Politechniki Poznańskiej",
+      "en": ""
+    },
+    "Floors": [ "-1", "0", "1", "2" ]
+  },
+  {
+    "Id": "A25",
+    "Name": {
+      "pl": "Budynek Wydziału Elektroniki i Telekomunikacji",
+      "en": ""
+    },
+    "Floors": [ "0", "1", "2" ]
+  },
+  {
+    "Id": "A28",
+    "Name": {
+      "pl": "Budynek Wydziału Technologii Chemicznej",
+      "en": ""
+    },
+    "Floors": [ "0", "1", "2", "3" ]
+  },
+  {
+    "Id": "A29",
+    "Name": {
+      "pl": "Hala Sportowa im. Wojciecha Weissa",
+      "en": ""
+    },
+    "Floors": [ "-1", "0", "1" ]
+  },
+  {
+    "Id": "A30",
+    "Name": {
+      "pl": "Budynek Wydziału Architektury i Inżynierii Zarządzania",
+      "en": ""
+    },
+    "Floors": [ "0", "1", "2", "3" ]
+  },
+  {
+    "Id": "DS1",
+    "Name": {
+      "pl": "Dom Studencki nr 1",
+      "en": ""
+    }
+  },
+  {
+    "Id": "DS2",
+    "Name": {
+      "pl": "Dom Studencki nr 2",
+      "en": ""
+    }
+  },
+  {
+    "Id": "DS3",
+    "Name": {
+      "pl": "Dom Studencki nr 3",
+      "en": ""
+    }
+  },
+  {
+    "Id": "DS4",
+    "Name": {
+      "pl": "Dom Studencki nr 4",
+      "en": ""
+    }
+  },
+  {
+    "Id": "DS5",
+    "Name": {
+      "pl": "Dom Studencki nr 5",
+      "en": ""
+    }
+  },
+  {
+    "Id": "DS5",
+    "Name": {
+      "pl": "Dom Studencki nr 6",
+      "en": ""
+    }
+  }
+]

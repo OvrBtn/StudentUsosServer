@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
+using StudentUsosServer.Features.CampusMap.Repositories;
 using StudentUsosServer.Services;
 using StudentUsosServer.Services.Interfaces;
 
@@ -21,6 +22,12 @@ namespace StudentUsosServer
             builder.Services.AddScoped<IUsosPushNotificationsService, UsosPushNotificationsService>();
             builder.Services.AddSingleton<IUsosAuthorizationService, UsosAuthorizationService>();
             builder.Services.AddSingleton<IUsosApiService, UsosApiService>();
+            return builder;
+        }
+
+        public static WebApplicationBuilder RegisterRepositories(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddSingleton<ICampusMapRepository, CampusMapRepository>();
             return builder;
         }
 

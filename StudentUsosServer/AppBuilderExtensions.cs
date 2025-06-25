@@ -17,6 +17,8 @@ namespace StudentUsosServer
 
         public static WebApplicationBuilder RegisterServices(this WebApplicationBuilder builder)
         {
+            builder.Services.AddSingleton<Secrets>();
+
             builder.Services.AddScoped<IPushNotificationsService, PushNotificationsService>();
             builder.Services.AddSingleton<UsosInstallationsService>();
             builder.Services.AddScoped<IUsosPushNotificationsService, UsosPushNotificationsService>();
@@ -27,7 +29,7 @@ namespace StudentUsosServer
 
         public static WebApplicationBuilder RegisterRepositories(this WebApplicationBuilder builder)
         {
-            builder.Services.AddSingleton<ICampusMapRepository, CampusMapRepository>();
+            builder.Services.AddScoped<ICampusMapRepository, CampusMapRepository>();
             return builder;
         }
 

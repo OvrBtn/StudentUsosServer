@@ -21,6 +21,14 @@ namespace StudentUsosServer.Controllers.V1
             this.secrets = secrets;
         }
 
+        [HttpGet("CampusSvg"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        public async Task<ActionResult<string>> GetCampusSvgAsync()
+        {
+            StreamReader streamReader = new(Path.Combine(Directory.GetCurrentDirectory(), "Resources", "CampusMap", "CampusMap.svg"));
+            var campusMap = await streamReader.ReadToEndAsync();
+            return Ok(campusMap);
+        }
+
         /// <summary>
         /// Retrieves list of all buildings on the primary campus
         /// </summary>

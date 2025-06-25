@@ -1,7 +1,10 @@
-﻿namespace StudentUsosServer.Features.CampusMap.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StudentUsosServer.Features.CampusMap.Models;
 
 public class RoomInfo
 {
+    [Key]
     public int RoomId { get; set; }
     public required string BuildingId { get; set; }
     public required string Floor { get; set; }

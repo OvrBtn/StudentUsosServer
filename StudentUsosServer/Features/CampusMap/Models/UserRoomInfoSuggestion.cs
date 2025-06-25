@@ -4,6 +4,8 @@ namespace StudentUsosServer.Features.CampusMap.Models;
 
 public class UserRoomInfoSuggestion
 {
+    [Key]
+    public int Id { get; set; }
     [MaxLength(10)]
     public required string UserStudentNumber { get; set; }
     public required string UserInstallation { get; set; }

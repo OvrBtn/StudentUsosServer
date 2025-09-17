@@ -19,4 +19,5 @@ public class UserRoomInfoSuggestion
     public required string SuggestedRoomName { get; set; }
     [Range(1, 20)]
     public required int SuggestionWeight { get; set; }
+    public bool IsCreatedByRootUser { get; set; } = false;
 }

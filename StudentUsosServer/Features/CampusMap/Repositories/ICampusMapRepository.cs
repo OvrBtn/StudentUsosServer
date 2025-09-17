@@ -10,6 +10,6 @@ public interface ICampusMapRepository
     public Task<string> GetFloorSvgAsync(string buildingId, string floor);
     public List<RoomInfo> GetFloorData(string buildingId, string floor);
 
-    public bool CanRegisterUserSuggestion(UserRoomInfoSuggestion userRoomInfoSuggestion);
+    public bool CanRegisterUserSuggestion(UserRoomInfoSuggestionDTO userRoomInfoSuggestion);
     public void RegisterUserSuggestion(UserRoomInfoSuggestion userRoomInfoSuggestion);
 }

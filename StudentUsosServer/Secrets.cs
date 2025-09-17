@@ -29,6 +29,7 @@ namespace StudentUsosServer
         public required string EscUrl { get; init; }
         public required string UsosPushNotificationsHubVerifyToken { get; init; }
         public required string RootUserStudentNumber { get; init; }
+        public required string CampusMapRootUserAccessCode { get; init; }
 
     }
 }

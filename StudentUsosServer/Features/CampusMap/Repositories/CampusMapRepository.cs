@@ -15,7 +15,7 @@ public class CampusMapRepository : ICampusMapRepository
 
     public async Task<string> GetBuildingsListRawJsonAsync()
     {
-        StreamReader streamReader = new(Path.Combine(Directory.GetCurrentDirectory(), "Resources", "CampusMapBuildings.json"));
+        using StreamReader streamReader = new(Path.Combine(Directory.GetCurrentDirectory(), "Resources", "CampusMapBuildings.json"));
         var json = await streamReader.ReadToEndAsync();
         return json;
     }
@@ -28,7 +28,7 @@ public class CampusMapRepository : ICampusMapRepository
 
     public async Task<string> GetFloorSvgAsync(string buildingId, string floor)
     {
-        StreamReader streamReader = new(Path.Combine(Directory.GetCurrentDirectory(), "Resources", "CampusMap", $"{buildingId}_{floor}.svg"));
+        using StreamReader streamReader = new(Path.Combine(Directory.GetCurrentDirectory(), "Resources", "CampusMap", $"{buildingId}_{floor}.svg"));
         var svg = await streamReader.ReadToEndAsync();
         return svg;
     }
@@ -42,11 +42,12 @@ public class CampusMapRepository : ICampusMapRepository
             .ToList();
     }
 
-    public bool CanRegisterUserSuggestion(UserRoomInfoSuggestion userRoomInfoSuggestion)
+    public bool CanRegisterUserSuggestion(UserRoomInfoSuggestionDTO userRoomInfoSuggestion)
     {
-        return dbContext.UserRoomInfoSuggestions.Any(x => x.UserStudentNumber == userRoomInfoSuggestion.UserStudentNumber
-        && x.RoomId == userRoomInfoSuggestion.RoomId
-        && x.BuildingId == userRoomInfoSuggestion.BuildingId) == false;
+        var result = dbContext.UserRoomInfoSuggestions.Any(x => x.UserStudentNumber == userRoomInfoSuggestion.UserStudentNumber
+                                                                && x.RoomId.ToString() == userRoomInfoSuggestion.RoomId
+                                                                && x.BuildingId == userRoomInfoSuggestion.BuildingId) == false;
+        return result;
     }
 
     public void RegisterUserSuggestion(UserRoomInfoSuggestion userRoomInfoSuggestion)
@@ -55,7 +56,8 @@ public class CampusMapRepository : ICampusMapRepository
 
         var roomInfo = dbContext.RoomInfos.FirstOrDefault(x => x.RoomId == userRoomInfoSuggestion.RoomId
         && x.BuildingId == userRoomInfoSuggestion.BuildingId
-        && x.Floor == userRoomInfoSuggestion.Floor);
+        && x.Floor == userRoomInfoSuggestion.Floor
+        && x.Name == userRoomInfoSuggestion.SuggestedRoomName);
 
         if (roomInfo is null)
         {

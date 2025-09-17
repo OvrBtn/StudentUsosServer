@@ -4,6 +4,7 @@ using StudentUsosServer.Database;
 using StudentUsosServer.Features.CampusMap.Models;
 using StudentUsosServer.Features.CampusMap.Repositories;
 using StudentUsosServer.Filters;
+using System.Text.Json;
 
 namespace StudentUsosServer.Controllers.V1
 {
@@ -12,19 +13,17 @@ namespace StudentUsosServer.Controllers.V1
     {
         MainDBContext dbContext;
         ICampusMapRepository campusMapRepository;
-        Secrets secrets;
 
-        public CampusMapController(MainDBContext dBContext, ICampusMapRepository campusMapRepository, Secrets secrets)
+        public CampusMapController(MainDBContext dBContext, ICampusMapRepository campusMapRepository)
         {
             this.dbContext = dBContext;
             this.campusMapRepository = campusMapRepository;
-            this.secrets = secrets;
         }
 
         [HttpGet("CampusSvg"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
         public async Task<ActionResult<string>> GetCampusSvgAsync()
         {
-            StreamReader streamReader = new(Path.Combine(Directory.GetCurrentDirectory(), "Resources", "CampusMap", "CampusMap.svg"));
+            using StreamReader streamReader = new(Path.Combine(Directory.GetCurrentDirectory(), "Resources", "CampusMap", "CampusMap.svg"));
             var campusMap = await streamReader.ReadToEndAsync();
             return Ok(campusMap);
         }
@@ -56,28 +55,86 @@ namespace StudentUsosServer.Controllers.V1
 
         const int RootUserSuggestionWeight = 10;
         [HttpPost("UserSuggestion"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
-        public ActionResult RegisterUserSuggestion(UserRoomInfoSuggestion userRoomInfoSuggestion, [FromHeader] string installation, [FromHeader] string internalAccessToken)
+        public ActionResult RegisterUserSuggestion(UserRoomInfoSuggestionDTO userRoomInfoSuggestionDto, [FromHeader] string installation, [FromHeader] string internalAccessToken)
         {
             var user = dbContext.Users.FirstOrDefault(x => x.Installation == installation && x.InternalAccessToken == internalAccessToken);
-            if (user is null || user.StudentNumber != userRoomInfoSuggestion.UserStudentNumber)
+            if (user is null || user.StudentNumber != userRoomInfoSuggestionDto.UserStudentNumber)
             {
                 return BadRequest();
             }
 
-            if (campusMapRepository.CanRegisterUserSuggestion(userRoomInfoSuggestion) == false)
+            bool isRootUser = userRoomInfoSuggestionDto.UserStudentNumber == Secrets.Default.RootUserStudentNumber;
+
+            if (isRootUser == false && campusMapRepository.CanRegisterUserSuggestion(userRoomInfoSuggestionDto) == false)
             {
                 return Forbid();
             }
 
-            userRoomInfoSuggestion.UserInstallation = installation;
-            userRoomInfoSuggestion.SuggestionWeight = 1;
-            if (userRoomInfoSuggestion.UserStudentNumber == secrets.RootUserStudentNumber)
+            int suggestionWeight = 1;
+            if (isRootUser)
             {
-                userRoomInfoSuggestion.SuggestionWeight = RootUserSuggestionWeight;
+                suggestionWeight = RootUserSuggestionWeight;
             }
+
+            UserRoomInfoSuggestion userRoomInfoSuggestion = new()
+            {
+                BuildingId = userRoomInfoSuggestionDto.BuildingId,
+                Floor = userRoomInfoSuggestionDto.Floor,
+                RoomId = int.Parse(userRoomInfoSuggestionDto.RoomId),
+                SuggestedRoomName = userRoomInfoSuggestionDto.SuggestedRoomName,
+                SuggestionWeight = suggestionWeight,
+                UserInstallation = installation,
+                UserStudentNumber = user.StudentNumber,
+                IsCreatedByRootUser = isRootUser,
+            };
 
             campusMapRepository.RegisterUserSuggestion(userRoomInfoSuggestion);
             return Ok();
         }
+
+#if DEBUG
+
+        class ImportedFloorData
+        {
+            public required int RoomId { get; set; }
+            public required string RoomName { get; set; }
+        }
+
+        [HttpPost("ImportFloorData"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        public ActionResult ImportFloorData(string json, string studentNumber, string installation, string buildingId, string floor)
+        {
+            var user = dbContext.Users.FirstOrDefault(x => x.StudentNumber == studentNumber);
+            if (user is null)
+            {
+                return BadRequest("User not found");
+            }
+
+            var deserialized = JsonSerializer.Deserialize<List<ImportedFloorData>>(json);
+            if (deserialized is null)
+            {
+                return BadRequest("Error deserializing json");
+            }
+
+            for (int i = 0; i < deserialized.Count; i++)
+            {
+
+                var userRoomInfoSuggestion = new UserRoomInfoSuggestion()
+                {
+                    UserInstallation = installation,
+                    SuggestionWeight = RootUserSuggestionWeight,
+                    BuildingId = buildingId,
+                    Floor = floor,
+                    RoomId = deserialized[i].RoomId,
+                    SuggestedRoomName = deserialized[i].RoomName,
+                    UserStudentNumber = studentNumber,
+                    IsCreatedByRootUser = true
+                };
+
+                campusMapRepository.RegisterUserSuggestion(userRoomInfoSuggestion);
+            }
+
+            return Ok();
+        }
     }
+#endif
 }

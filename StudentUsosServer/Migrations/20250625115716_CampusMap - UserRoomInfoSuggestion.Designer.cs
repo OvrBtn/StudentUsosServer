@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentUsosServer.Database;
 
@@ -10,16 +11,18 @@ using StudentUsosServer.Database;
 namespace StudentUsosServer.Migrations
 {
     [DbContext(typeof(MainDBContext))]
-    partial class MainDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250625115716_CampusMap - UserRoomInfoSuggestion")]
+    partial class CampusMapUserRoomInfoSuggestion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
 
             modelBuilder.Entity("StudentUsosServer.Features.CampusMap.Models.RoomInfo", b =>
                 {
-                    b.Property<int>("InternalId")
+                    b.Property<int>("RoomId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -38,10 +41,7 @@ namespace StudentUsosServer.Migrations
                     b.Property<int>("NameWeight")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("RoomId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("InternalId");
+                    b.HasKey("RoomId");
 
                     b.ToTable("RoomInfos");
                 });

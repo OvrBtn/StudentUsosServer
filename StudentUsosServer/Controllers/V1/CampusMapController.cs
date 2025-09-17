@@ -92,6 +92,77 @@ namespace StudentUsosServer.Controllers.V1
             return Ok();
         }
 
+        [HttpGet("BuildingAndFloorUserSuggestionVotes"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        public ActionResult<List<UserSuggestionVote>> GetBuildingAndFloorUserSuggestionVotes(string buildingId, string floor)
+        {
+            var data = campusMapRepository.GetFloorData(buildingId, floor);
+            return Ok(data);
+        }
+
+        public class UserSuggestionVoteDto
+        {
+            required public string BuildingId { get; set; }
+            required public string Floor { get; set; }
+            required public string RoomId { get; set; }
+            required public string InternalUserSuggestionId { get; set; }
+            required public string StudentNumber { get; set; }
+        }
+
+        [HttpPost("UpvoteUserSuggestion"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        public async Task<ActionResult<List<UserSuggestionVote>>> UpvoteUserSuggestion(UserSuggestionVoteDto userSuggestionVoteDto,
+            [FromHeader] string installation,
+            [FromHeader] string internalAccessToken)
+        {
+            var user = dbContext.Users.FirstOrDefault(x => x.Installation == installation &&
+            x.InternalAccessToken == internalAccessToken &&
+            x.StudentNumber == userSuggestionVoteDto.StudentNumber);
+            if (user is null)
+            {
+                return BadRequest("User not found");
+            }
+
+            var result = await campusMapRepository.UserSuggestionCastVoteAsync(userSuggestionVoteDto.BuildingId,
+                userSuggestionVoteDto.Floor,
+                int.Parse(userSuggestionVoteDto.RoomId),
+                int.Parse(userSuggestionVoteDto.InternalUserSuggestionId),
+                1,
+                user);
+
+            if (result)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpPost("DownvoteUserSuggestion"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        public async Task<ActionResult<List<UserSuggestionVote>>> DownvoteUserSuggestion(UserSuggestionVoteDto userSuggestionVoteDto,
+            [FromHeader] string installation,
+            [FromHeader] string internalAccessToken)
+        {
+            var user = dbContext.Users.FirstOrDefault(x => x.Installation == installation &&
+            x.InternalAccessToken == internalAccessToken &&
+            x.StudentNumber == userSuggestionVoteDto.StudentNumber);
+            if (user is null)
+            {
+                return BadRequest("User not found");
+            }
+
+            var result = await campusMapRepository.UserSuggestionCastVoteAsync(userSuggestionVoteDto.BuildingId,
+                userSuggestionVoteDto.Floor,
+                int.Parse(userSuggestionVoteDto.RoomId),
+                int.Parse(userSuggestionVoteDto.InternalUserSuggestionId),
+                -1,
+                user);
+
+            if (result)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+
 #if DEBUG
 
         class ImportedFloorData

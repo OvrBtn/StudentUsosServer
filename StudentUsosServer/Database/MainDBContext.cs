@@ -16,5 +16,6 @@ namespace StudentUsosServer.Database
 
         public DbSet<UserRoomInfoSuggestion> UserRoomInfoSuggestions { get; set; }
         public DbSet<RoomInfo> RoomInfos { get; set; }
+        public DbSet<UserSuggestionVote> UserSuggestionVotes { get; set; }
     }
 }

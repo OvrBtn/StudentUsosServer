@@ -87,8 +87,14 @@ public class CampusMapRepository : ICampusMapRepository
 
     public async Task<bool> UserSuggestionCastVoteAsync(string buildingId, string floor, int roomId, int userSuggestionId, int vote, User user)
     {
-        var foundVote = dbContext.UserSuggestionVotes.FirstOrDefault(x => x.UserStudentNumber == user.StudentNumber && x.UserInstallation == user.Installation);
-        RoomInfo? roomInfo = dbContext.RoomInfos.FirstOrDefault(x => x.BuildingId == buildingId && x.Floor == floor && x.RoomId == roomId && x.InternalId == userSuggestionId);
+        var foundVote = dbContext.UserSuggestionVotes.FirstOrDefault(x => x.UserStudentNumber == user.StudentNumber &&
+        x.UserInstallation == user.Installation &&
+        x.InternalUserSuggestionId == userSuggestionId);
+
+        RoomInfo? roomInfo = dbContext.RoomInfos.FirstOrDefault(x => x.BuildingId == buildingId &&
+        x.Floor == floor &&
+        x.RoomId == roomId &&
+        x.InternalId == userSuggestionId);
         if (roomInfo is null)
         {
             return false;
@@ -123,5 +129,15 @@ public class CampusMapRepository : ICampusMapRepository
         await dbContext.SaveChangesAsync();
 
         return true;
+    }
+
+    public List<UserSuggestionVote> GetUsersUpvotes(User user)
+    {
+        return dbContext.UserSuggestionVotes.Where(x => x.UserInstallation == user.Installation && x.UserStudentNumber == user.StudentNumber && x.Vote > 0).ToList();
+    }
+
+    public List<UserSuggestionVote> GetUsersDownvotes(User user)
+    {
+        return dbContext.UserSuggestionVotes.Where(x => x.UserInstallation == user.Installation && x.UserStudentNumber == user.StudentNumber && x.Vote < 0).ToList();
     }
 }

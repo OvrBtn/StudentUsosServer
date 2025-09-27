@@ -162,6 +162,34 @@ namespace StudentUsosServer.Controllers.V1
             return BadRequest();
         }
 
+        [HttpGet("UsersUpvotes"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        public ActionResult<List<UserSuggestionVote>> GetUsersUpvotes([FromHeader] string installation, [FromHeader] string internalAccessToken)
+        {
+            var user = dbContext.Users.FirstOrDefault(x => x.Installation == installation &&
+            x.InternalAccessToken == internalAccessToken);
+            if (user is null)
+            {
+                return BadRequest("User not found");
+            }
+
+            var result = campusMapRepository.GetUsersUpvotes(user).Select(x => x.InternalUserSuggestionId.ToString());
+            return Ok(result);
+        }
+
+        [HttpGet("UsersDownvotes"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        public ActionResult<List<UserSuggestionVote>> GetUsersDownvotes([FromHeader] string installation, [FromHeader] string internalAccessToken)
+        {
+            var user = dbContext.Users.FirstOrDefault(x => x.Installation == installation &&
+            x.InternalAccessToken == internalAccessToken);
+            if (user is null)
+            {
+                return BadRequest("User not found");
+            }
+
+            var result = campusMapRepository.GetUsersDownvotes(user).Select(x => x.InternalUserSuggestionId.ToString());
+            return Ok(result);
+        }
+
 
 #if DEBUG
 

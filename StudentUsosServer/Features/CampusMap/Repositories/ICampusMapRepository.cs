@@ -16,4 +16,7 @@ public interface ICampusMapRepository
 
     public List<UserSuggestionVote> GetBuildingAndFloorUserSuggestionVotes(string buildingId, string floor);
     public Task<bool> UserSuggestionCastVoteAsync(string buildingId, string floor, int roomId, int userSuggestionId, int vote, User user);
+
+    public List<UserSuggestionVote> GetUsersUpvotes(User user);
+    public List<UserSuggestionVote> GetUsersDownvotes(User user);
 }

@@ -95,7 +95,11 @@ namespace StudentUsosServer.Controllers.V1
             }
             User user = new(installation, new InternalAccessTokens(_dbContext), accessTokens.AccessTokenSecret);
 
-            await GetUserInfo(user, installation, accessTokens);
+            var userInfoResult = await GetUserInfo(user, installation, accessTokens);
+            if (userInfoResult is null)
+            {
+                return Problem("Error requesting USOS API", statusCode: StatusCodes.Status424FailedDependency);
+            }
 
             await RemoveDuplicateUserRecords(_dbContext, user);
 

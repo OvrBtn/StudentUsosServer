@@ -44,7 +44,8 @@ namespace StudentUsosServer.Filters
             try
             {
 #if DEBUG
-                //return;
+                //WARNING: when using dev tunnel this filter will always block requests due to host mismatch, hence this return
+                return;
 #endif
                 var result = await Authorize(context);
                 if (result.isAuthorized == false)

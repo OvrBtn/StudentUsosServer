@@ -368,3 +368,5 @@ secrets.json
 *db-shm
 *db-wal
 /StudentUsosServer/Controllers/V1/EscController.cs
+
+/StudentUsosServer/Resources/CampusMap/*

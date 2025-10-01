@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentUsosServer.Database;
 
@@ -10,9 +11,11 @@ using StudentUsosServer.Database;
 namespace StudentUsosServer.Migrations
 {
     [DbContext(typeof(MainDBContext))]
-    partial class MainDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250625121936_CampusMap RoomInfo update")]
+    partial class CampusMapRoomInfoupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
@@ -65,9 +68,6 @@ namespace StudentUsosServer.Migrations
                     b.Property<bool>("IsCreatedByRootUser")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsImported")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("RoomId")
                         .HasMaxLength(10)
                         .HasColumnType("INTEGER");
@@ -92,42 +92,6 @@ namespace StudentUsosServer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserRoomInfoSuggestions");
-                });
-
-            modelBuilder.Entity("StudentUsosServer.Features.CampusMap.Models.UserSuggestionVote", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CampusBuildingId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Floor")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("InternalUserSuggestionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserInstallation")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserStudentNumber")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Vote")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserSuggestionVotes");
                 });
 
             modelBuilder.Entity("StudentUsosServer.Models.AppLog", b =>

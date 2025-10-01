@@ -21,13 +21,15 @@ namespace StudentUsosServer
             isInitialized = true;
         }
 
-        public string InternalConsumerKey { get; init; }
-        public string InternalConsumerKeySecret { get; init; }
-        public string UsosConsumerKey { get; init; }
-        public string UsosConsumerKeySecret { get; init; }
-        public string FirebaseServiceAccountJsonFileName { get; init; }
-        public string EscUrl { get; init; }
-        public string UsosPushNotificationsHubVerifyToken { get; init; }
+        public required string InternalConsumerKey { get; init; }
+        public required string InternalConsumerKeySecret { get; init; }
+        public required string UsosConsumerKey { get; init; }
+        public required string UsosConsumerKeySecret { get; init; }
+        public required string FirebaseServiceAccountJsonFileName { get; init; }
+        public required string EscUrl { get; init; }
+        public required string UsosPushNotificationsHubVerifyToken { get; init; }
+        public required string RootUserStudentNumber { get; init; }
+        public required string CampusMapRootUserAccessCode { get; init; }
 
     }
 }

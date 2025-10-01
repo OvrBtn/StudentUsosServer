@@ -235,6 +235,6 @@ namespace StudentUsosServer.Controllers.V1
 
             return Ok();
         }
-    }
 #endif
+    }
 }

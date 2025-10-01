@@ -67,7 +67,7 @@ namespace StudentUsosServer.Controllers.V1
 
             if (isRootUser == false && campusMapRepository.CanRegisterUserSuggestion(userRoomInfoSuggestionDto) == false)
             {
-                return Forbid();
+                return StatusCode(StatusCodes.Status403Forbidden);
             }
 
             int suggestionWeight = 1;

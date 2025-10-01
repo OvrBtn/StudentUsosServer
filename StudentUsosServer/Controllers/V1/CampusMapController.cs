@@ -226,7 +226,8 @@ namespace StudentUsosServer.Controllers.V1
                     RoomId = deserialized[i].RoomId,
                     SuggestedRoomName = deserialized[i].RoomName,
                     UserStudentNumber = studentNumber,
-                    IsCreatedByRootUser = true
+                    IsCreatedByRootUser = true,
+                    IsImported = true
                 };
 
                 campusMapRepository.RegisterUserSuggestion(userRoomInfoSuggestion);

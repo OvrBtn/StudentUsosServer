@@ -20,4 +20,5 @@ public class UserRoomInfoSuggestion
     [Range(1, 20)]
     public required int SuggestionWeight { get; set; }
     public bool IsCreatedByRootUser { get; set; } = false;
+    public bool IsImported { get; set; } = false;
 }

@@ -34,7 +34,7 @@ public class CampusMapRepository : ICampusMapRepository
         return svg;
     }
 
-    const int MinWeightOfRoomInfo = 4;
+    const int MinWeightOfRoomInfo = 1;
     public List<RoomInfo> GetFloorData(string buildingId, string floor)
     {
         return dbContext.RoomInfos.Where(x => x.NameWeight >= MinWeightOfRoomInfo

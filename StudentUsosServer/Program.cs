@@ -29,9 +29,13 @@ builder.ConfigureVersioning();
 builder.RegisterServices();
 builder.RegisterRepositories();
 
+builder.Services.AddHealthChecks();
+
 await builder.InitializeConstants();
 
 var app = builder.Build();
+
+app.MapHealthChecks("/health").RequireHost("localhost:5000");
 
 app.ConfigureSwagger();
 

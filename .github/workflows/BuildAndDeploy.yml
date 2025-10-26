@@ -1,0 +1,119 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release --no-restore
+
+      - name: Publish
+        run: dotnet publish -c Release -o ./publish
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-app
+          path: ./publish
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: success()
+    steps:
+      - name: Download published artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: published-app
+          path: ./publish
+
+      - name: Copy files to server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          source: "./publish/*"
+          target: "/tmp/studentusos_publish"
+
+      - name: Remote deploy and restart
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            set -e
+
+            TIMESTAMP=$(date +'%Y-%m-%d_%H-%M-%S')
+            BACKUP_DB_DIR="/var/www/db_backups/$TIMESTAMP"
+            TMP_PREV_DIR="/tmp/studentusos_prev_$TIMESTAMP"
+            DEPLOY_DIR="/var/www/api"
+            TMP_PUBLISH_DIR="/tmp/studentusos_publish"
+
+            rollback() {
+              echo "::error ::Deployment failed at line $1. Rolling back..."
+              if [ -d "$TMP_PREV_DIR" ]; then
+                echo "Restoring previous deployment..."
+                rsync -a --delete "$TMP_PREV_DIR/" "$DEPLOY_DIR/"
+                sudo systemctl restart StudentUsosServer.service
+                echo "Rollback complete."
+              else
+                echo "No previous deployment found. Rollback skipped."
+              fi
+              exit 1
+            }
+            trap 'rollback $LINENO' ERR
+
+            echo "Stoping service..."
+            sudo systemctl stop StudentUsosServer.service
+
+            echo "Creating database backup..."
+            mkdir -p "$BACKUP_DB_DIR"
+            cp "$DEPLOY_DIR/MainLocalDB.db" "$BACKUP_DB_DIR"/
+
+            echo "Backing up current deployment..."
+            if [ -d "$DEPLOY_DIR" ]; then
+              rsync -a "$DEPLOY_DIR/" "$TMP_PREV_DIR/"
+            fi
+
+            echo "Deploying new version..."
+            rsync -avu "$TMP_PUBLISH_DIR/publish/" "$DEPLOY_DIR/"
+
+            echo "Writing secrets..."
+            echo '${{ secrets.SECRETS_JSON }}' > "$DEPLOY_DIR/secrets.json"
+            mkdir -p "$DEPLOY_DIR/Resources"
+            echo '${{ secrets.FIREBASE_JSON }}' > "$DEPLOY_DIR/Resources/studentusos-firebase-adminsdk.json"
+
+            echo "Restarting service..."
+            sudo systemctl restart StudentUsosServer.service
+
+            echo "Running health check..."
+            sleep 5
+            if ! curl -fs http://localhost:5000/health > /dev/null; then
+              echo "::error ::Health check failed. Rolling back."
+              rollback $LINENO
+            fi
+
+            echo "Cleaning up temporary files..."
+            rm -rf "$TMP_PREV_DIR"
+            rm -rf "$TMP_PUBLISH_DIR"
+
+            echo "Deployment completed successfully."

@@ -362,7 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-studentusos-firebase-adminsdk-uwnjj-658ed7b86c.json
 secrets.json
 *db
 *db-shm
@@ -370,3 +369,4 @@ secrets.json
 /StudentUsosServer/Controllers/V1/EscController.cs
 
 /StudentUsosServer/Resources/CampusMap/*
+/StudentUsosServer/Resources/studentusos-firebase-adminsdk.json

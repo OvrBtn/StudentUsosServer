@@ -28,12 +28,17 @@ namespace StudentUsosServer.Controllers.V1
         /// </summary>
         /// <returns></returns>
         [HttpPost("log"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
-        public async Task<ActionResult> Log([FromBody] LogRequestPayload payload, [FromHeader] string installation)
+        public async Task<ActionResult> Log([FromBody] LogRequestPayload payload,
+            [FromHeader] string installation,
+            [FromHeader] string? apiVersion,
+            [FromHeader] string? applicationVersion)
         {
             foreach (var item in payload.Logs)
             {
                 item.UserUsosId = payload.UserUsosId;
                 item.UserInstallation = installation;
+                item.ApiVersion = apiVersion;
+                item.AppVersion = applicationVersion;
             }
 
             await _dbContext.AppLogs.AddRangeAsync(payload.Logs);

@@ -19,5 +19,8 @@ namespace StudentUsosServer.Models
         //Filled on server side
         public string? UserInstallation { get; set; }
         public string? UserUsosId { get; set; }
+        public string? ApiVersion { get; set; }
+        public string? AppVersion { get; set; }
+
     }
 }

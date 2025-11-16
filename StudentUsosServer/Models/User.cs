@@ -38,6 +38,7 @@ namespace StudentUsosServer.Models
         public long CreationDateUnix { get; set; } = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         public DateTime LastActiveDate { get; set; } = DateTime.UtcNow;
         public long LastActiveDateUnix { get; set; } = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        public string? AppVersion { get; set; }
 
         public string FcmTokensJson { get; private set; } = "";
 

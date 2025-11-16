@@ -197,13 +197,19 @@ namespace StudentUsosServer.Controllers.V1
 
 
         [HttpGet("isSessionActive"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
-        public async Task<ActionResult<bool>> IsUsersSessionActive([FromHeader] string internalAccessToken, [FromHeader] string usosAccessToken, [FromHeader] string installation)
+        public async Task<ActionResult<bool>> IsUsersSessionActive([FromHeader] string internalAccessToken,
+            [FromHeader] string usosAccessToken,
+            [FromHeader] string installation,
+            [FromHeader] string? applicationVersion)
         {
             User? user = _dbContext.Users.Where(x => x.InternalAccessToken == internalAccessToken).FirstOrDefault();
             if (user == null)
             {
-                return Ok(false);
+                return BadRequest();
             }
+
+            user.AppVersion = applicationVersion;
+
             var response = await _usosApiService.SendRequestFullResponseAsync("services/users/user", new(), installation, usosAccessToken, user.AccessTokenSecret);
             if (response.Response == null || response.ResponseContent == null)
             {
@@ -212,31 +218,22 @@ namespace StudentUsosServer.Controllers.V1
             if (response.Response!.StatusCode == System.Net.HttpStatusCode.Unauthorized || response.ResponseContent!.Contains("Invalid access token"))
             {
                 _dbContext.Users.Remove(user);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return Ok(false);
             }
             if (response.IsSuccess && response.ResponseContent!.Contains("first_name"))
             {
-                await UpdateUsersLastActiveField(_dbContext, user);
+                await UpdateUsersLastActiveField(user);
+                await _dbContext.SaveChangesAsync();
                 return Ok(true);
             }
             return Problem("Could not check, there might be an issue requesting USOS API", statusCode: StatusCodes.Status424FailedDependency);
         }
 
-        async Task UpdateUsersCreationDateField(MainDBContext dBContext, User user, bool saveChanges = true)
-        {
-            user.CreationDate = DateTime.UtcNow;
-            user.CreationDateUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            dBContext.Users.Update(user);
-            if (saveChanges) await dBContext.SaveChangesAsync();
-        }
-
-        async Task UpdateUsersLastActiveField(MainDBContext dBContext, User user, bool saveChanges = true)
+        async Task UpdateUsersLastActiveField(User user)
         {
             user.LastActiveDate = DateTime.UtcNow;
             user.LastActiveDateUnix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            dBContext.Users.Update(user);
-            if (saveChanges) await dBContext.SaveChangesAsync();
         }
 
 

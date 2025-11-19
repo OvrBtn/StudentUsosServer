@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentUsosServer.Database;
 
@@ -10,9 +11,11 @@ using StudentUsosServer.Database;
 namespace StudentUsosServer.Migrations
 {
     [DbContext(typeof(MainDBContext))]
-    partial class MainDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251119124453_Add device info to logs")]
+    partial class Adddeviceinfotologs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
@@ -158,6 +161,7 @@ namespace StudentUsosServer.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("DeviceInfo")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ExceptionMessage")
@@ -174,12 +178,6 @@ namespace StudentUsosServer.Migrations
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OperatingSystem")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OperatingSystemVersion")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserInstallation")

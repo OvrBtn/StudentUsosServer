@@ -104,6 +104,12 @@ namespace StudentUsosServer.Controllers.V1
                 return BadRequest();
             }
 
+            string? installationUrl = _usosInstallationsService.GetUrl(installationId);
+            if (installationUrl is null)
+            {
+                return BadRequest("Installation url not found");
+            }
+
             const string hubSignatureKey = "X-Hub-Signature";
             if (shouldCheckSignature && Request.Headers.ContainsKey(hubSignatureKey) == false)
             {
@@ -114,7 +120,9 @@ namespace StudentUsosServer.Controllers.V1
             using var reader = new StreamReader(Request.Body);
             string rawJson = await reader.ReadToEndAsync();
 
-            string calculatedSha1 = GenerateHmacSha1Signature(Secrets.Default.UsosConsumerKeySecret, rawJson);
+            var keys = _usosInstallationsService.GetUsosConsumerKeys(installationUrl);
+
+            string calculatedSha1 = GenerateHmacSha1Signature(keys.UsosConsumerKeySecret, rawJson);
             if (shouldCheckSignature && hubSignature != $"[{calculatedSha1}]" && hubSignature != calculatedSha1)
             {
                 return BadRequest();
@@ -130,7 +138,6 @@ namespace StudentUsosServer.Controllers.V1
                 return BadRequest();
             }
 
-            string? installationUrl = _usosInstallationsService.GetUrl(installationId);
             if (installationUrl == null)
             {
                 return BadRequest();

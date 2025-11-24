@@ -1,4 +1,5 @@
-﻿using StudentUsosServer.Models.Usos;
+﻿using StudentUsosServer.Features.CampusMap.Models;
+using StudentUsosServer.Models.Usos;
 using System.Text.Json;
 
 namespace StudentUsosServer.Services
@@ -6,9 +7,11 @@ namespace StudentUsosServer.Services
     public class UsosInstallationsService
     {
         readonly IWebHostEnvironment _environment;
-        public UsosInstallationsService(IWebHostEnvironment environment)
+        Secrets _secrets;
+        public UsosInstallationsService(IWebHostEnvironment environment, Secrets secrets)
         {
             _environment = environment;
+            _secrets = secrets;
             _ = Initialize();
         }
 
@@ -24,7 +27,7 @@ namespace StudentUsosServer.Services
             var filePath = Path.Combine(_environment.ContentRootPath, "Resources", "UsosInstallations.json");
             var jsonData = await File.ReadAllTextAsync(filePath);
 
-            var deserialized = JsonSerializer.Deserialize<List<UsosInstallation>>(jsonData);
+            var deserialized = JsonSerializer.Deserialize<List<UsosInstallation>>(jsonData)!;
 
             return deserialized;
         }
@@ -36,12 +39,16 @@ namespace StudentUsosServer.Services
         /// <returns>null if no installation with given id was found</returns>
         public string? GetUrl(string id)
         {
-            var found = Installations.Where(x => x.InstallationId == id).FirstOrDefault();
-            if (found == null)
+            return Installations.Where(x => x.InstallationId == id).FirstOrDefault()?.InstallationUrl;
+        }
+
+        public InstallationConsumerKeys? GetUsosConsumerKeys(string installationUrl)
+        {
+            if (_secrets.UsosConsumerKeys.TryGetValue(installationUrl, out var keys))
             {
-                return null;
+                return keys;
             }
-            return found!.InstallationUrl;
+            return null;
         }
     }
 }

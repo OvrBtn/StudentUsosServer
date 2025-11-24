@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using StudentUsosServer.Features.CampusMap.Models;
+using System.Text.Json;
 
 namespace StudentUsosServer
 {
@@ -21,10 +22,9 @@ namespace StudentUsosServer
             isInitialized = true;
         }
 
+        public required Dictionary<string, InstallationConsumerKeys> UsosConsumerKeys { get; init; }
         public required string InternalConsumerKey { get; init; }
         public required string InternalConsumerKeySecret { get; init; }
-        public required string UsosConsumerKey { get; init; }
-        public required string UsosConsumerKeySecret { get; init; }
         public required string FirebaseServiceAccountJsonFileName { get; init; }
         public required string EscUrl { get; init; }
         public required string UsosPushNotificationsHubVerifyToken { get; init; }

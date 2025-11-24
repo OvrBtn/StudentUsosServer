@@ -7,12 +7,10 @@ namespace StudentUsosServer.Services
     public class UsosInstallationsService
     {
         readonly IWebHostEnvironment _environment;
-        Secrets _secrets;
-        public UsosInstallationsService(IWebHostEnvironment environment, Secrets secrets)
+        public UsosInstallationsService(IWebHostEnvironment environment)
         {
             _environment = environment;
-            _secrets = secrets;
-            _ = Initialize();
+            Initialize().Wait();
         }
 
         async Task Initialize()
@@ -44,7 +42,7 @@ namespace StudentUsosServer.Services
 
         public InstallationConsumerKeys? GetUsosConsumerKeys(string installationUrl)
         {
-            if (_secrets.UsosConsumerKeys.TryGetValue(installationUrl, out var keys))
+            if (Secrets.Default.UsosConsumerKeys.TryGetValue(installationUrl, out var keys))
             {
                 return keys;
             }

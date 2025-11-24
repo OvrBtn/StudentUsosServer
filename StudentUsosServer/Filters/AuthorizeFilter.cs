@@ -33,10 +33,12 @@ namespace StudentUsosServer.Filters
             InternalOnly
         }
         Mode _mode;
+        string? _whitelistedInstallationUrl;
 
-        public AuthorizeAccessFilter(Mode mode)
+        public AuthorizeAccessFilter(Mode mode, string? whitelistedInstallationUrl = null)
         {
             _mode = mode;
+            _whitelistedInstallationUrl = whitelistedInstallationUrl;
         }
 
         public async void OnAuthorization(AuthorizationFilterContext context)
@@ -94,6 +96,11 @@ namespace StudentUsosServer.Filters
             catch (Exception ex)
             {
                 return new(false, ex.Message);
+            }
+
+            if (_whitelistedInstallationUrl is not null && _whitelistedInstallationUrl.ToLower() != authorizationHeaders.Installation.ToLower())
+            {
+                return new(false, "Installation doesn't match whitelisted installation");
             }
 
             const int timestampValiditySeconds = 30;

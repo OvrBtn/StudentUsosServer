@@ -85,9 +85,14 @@ namespace StudentUsosServer.Controllers.V1
 
         public class InstallationTarget
         {
+            //enforcing PascalCase
+            [JsonPropertyName("InstallationId")]
             public string InstallationId { get; set; }
+            [JsonPropertyName("InstallationUrl")]
             public string InstallationUrl { get; set; }
+            [JsonPropertyName("IsSupported")]
             public bool IsSupported { get; set; } = true;
+            [JsonPropertyName("LocalizedName")]
             public Dictionary<string, string> LocalizedName { get; set; }
         }
 
@@ -105,11 +110,16 @@ namespace StudentUsosServer.Controllers.V1
 
             var deserialized = JsonSerializer.Deserialize<List<InstallationOriginal>>(result) ?? new();
 
+            foreach (var item in deserialized)
+            {
+                item.BaseUrl = item.BaseUrl.Replace("http://", "https://");
+            }
+
             List<InstallationTarget> transformed = new();
             int id = 1;
             foreach (var item in deserialized)
             {
-                if (transformed.Any(x => x.InstallationUrl.Replace("https", "").Replace("http", "") == item.BaseUrl.Replace("https", "").Replace("http", "")))
+                if (transformed.Any(x => x.InstallationUrl == item.BaseUrl))
                 {
                     continue;
                 }

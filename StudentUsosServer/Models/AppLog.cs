@@ -14,6 +14,7 @@ namespace StudentUsosServer.Models
         public string? DeviceInfo { get; set; }
         public string? OperatingSystem { get; set; }
         public string? OperatingSystemVersion { get; set; }
+        public string? AppVersion { get; set; }
         public string CallerName { get; set; }
         public string CallerLineNumber { get; set; }
         public string CreationDate { get; set; }
@@ -23,7 +24,6 @@ namespace StudentUsosServer.Models
         public string? UserInstallation { get; set; }
         public string? UserUsosId { get; set; }
         public string? ApiVersion { get; set; }
-        public string? AppVersion { get; set; }
 
     }
 }

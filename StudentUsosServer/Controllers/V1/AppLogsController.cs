@@ -38,7 +38,13 @@ namespace StudentUsosServer.Controllers.V1
                 item.UserUsosId = payload.UserUsosId;
                 item.UserInstallation = installation;
                 item.ApiVersion = apiVersion;
-                item.AppVersion = applicationVersion;
+                if (item.AppVersion is null)
+                {
+                    //compatibility with older versions which do not send logs with app versions but 
+                    //they do send app version in headers
+                    //TODO: remove in the future
+                    item.AppVersion = applicationVersion + "-server";
+                }
             }
 
             await _dbContext.AppLogs.AddRangeAsync(payload.Logs);

@@ -10,5 +10,6 @@ namespace StudentUsosServer.Models.Usos
         public string InstallationUrl { get; set; }
         [JsonPropertyName("LocalizedName")]
         public Dictionary<string, string> LocalizedName { get; set; }
+        public bool IsSupported { get; set; }
     }
 }

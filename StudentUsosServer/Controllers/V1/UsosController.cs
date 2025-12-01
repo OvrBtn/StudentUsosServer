@@ -70,7 +70,7 @@ namespace StudentUsosServer.Controllers.V1
         [HttpGet("UsosInstallations"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.InternalOnly)]
         public ActionResult<List<UsosInstallation>> GetUsosInstallations()
         {
-            return _usosInstallationsService.Installations;
+            return _usosInstallationsService.Installations.Where(x => x.IsSupported).ToList();
         }
 
 #if DEBUG

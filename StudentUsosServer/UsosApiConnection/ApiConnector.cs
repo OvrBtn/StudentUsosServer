@@ -201,12 +201,17 @@ namespace UsosApiBrowser
         //    }
         //}
 
-        static HttpClient request = new();
+        static HttpClientHandler handler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+        };
+        static HttpClient httpClient = new(handler);
+
         public async Task<string> GetResponseAsync(string url)
         {
             try
             {
-                using (var response = await request.GetAsync(url))
+                using (var response = await httpClient.GetAsync(url))
                 {
                     response.EnsureSuccessStatusCode();
                     var responseString = await response.Content.ReadAsStringAsync();
@@ -224,7 +229,7 @@ namespace UsosApiBrowser
         {
             try
             {
-                using (var response = await request.GetAsync(url))
+                using (var response = await httpClient.GetAsync(url))
                 {
                     if (response.IsSuccessStatusCode)
                     {

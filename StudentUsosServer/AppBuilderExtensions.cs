@@ -17,8 +17,6 @@ namespace StudentUsosServer
 
         public static WebApplicationBuilder RegisterServices(this WebApplicationBuilder builder)
         {
-            builder.Services.AddSingleton<Secrets>();
-
             builder.Services.AddScoped<IPushNotificationsService, PushNotificationsService>();
             builder.Services.AddSingleton<UsosInstallationsService>();
             builder.Services.AddScoped<IUsosPushNotificationsService, UsosPushNotificationsService>();

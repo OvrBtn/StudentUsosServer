@@ -5,6 +5,11 @@ namespace StudentUsosServer.Services
 {
     public class UsosApiService : IUsosApiService
     {
+        UsosInstallationsService _usosInstallationsService;
+        public UsosApiService(UsosInstallationsService usosInstallationsService)
+        {
+            _usosInstallationsService = usosInstallationsService;
+        }
 
         static ApiConnector _apiConnector = new ApiConnector(new ApiInstallation());
         static Dictionary<string, ApiInstallation> _installations = new();
@@ -24,14 +29,20 @@ namespace StudentUsosServer.Services
             return _apiConnector;
         }
 
-        public string GetSignedUsosUrl(string methodName, string installation, Dictionary<string, string> arguments, string accessToken = "", string accessTokenSecret = "")
+        public string? GetSignedUsosUrl(string methodName, string installation, Dictionary<string, string> arguments, string accessToken = "", string accessTokenSecret = "")
         {
             ApiConnector apiConnector = GetApiConnector(installation);
             string url;
             if (accessToken != string.Empty && accessTokenSecret != string.Empty)
             {
+                var keys = _usosInstallationsService.GetUsosConsumerKeys(installation);
+                if (keys is null)
+                {
+                    return null;
+                }
+
                 url = apiConnector.GetURL(new ApiMethod { name = methodName }, arguments,
-                 Secrets.Default.UsosConsumerKey, Secrets.Default.UsosConsumerKeySecret, accessToken, accessTokenSecret, true);
+                 keys.UsosConsumerKey, keys.UsosConsumerKeySecret, accessToken, accessTokenSecret, true);
             }
             else
             {
@@ -43,11 +54,18 @@ namespace StudentUsosServer.Services
             return url;
         }
 
-        public async Task<string> SendRequestAsync(string methodName, Dictionary<string, string> arguments, string installation, string accessToken, string accessTokenSecret)
+        public async Task<string?> SendRequestAsync(string methodName, Dictionary<string, string> arguments, string installation, string accessToken, string accessTokenSecret)
         {
+            var keys = _usosInstallationsService.GetUsosConsumerKeys(installation);
+            if (keys is null)
+            {
+                return null;
+            }
+
             ApiConnector apiConnector = GetApiConnector(installation);
             var accessTokenUrl = apiConnector.GetURL(new ApiMethod { name = methodName }, arguments,
-                Secrets.Default.UsosConsumerKey, Secrets.Default.UsosConsumerKeySecret, accessToken, accessTokenSecret, true);
+                keys.UsosConsumerKey, keys.UsosConsumerKeySecret, accessToken, accessTokenSecret, true);
+
             var response = await apiConnector.GetResponseAsync(accessTokenUrl);
             if (response == null) return null;
             return response;
@@ -56,9 +74,16 @@ namespace StudentUsosServer.Services
         public async Task<(bool IsSuccess, HttpResponseMessage? Response, string? ResponseContent)> SendRequestFullResponseAsync(string methodName, Dictionary<string, string> arguments,
             string installation, string accessToken, string accessTokenSecret)
         {
+            var keys = _usosInstallationsService.GetUsosConsumerKeys(installation);
+            if (keys is null)
+            {
+                return new(false, null, null);
+            }
+
             ApiConnector apiConnector = GetApiConnector(installation);
             var accessTokenUrl = apiConnector.GetURL(new ApiMethod { name = methodName }, arguments,
-                Secrets.Default.UsosConsumerKey, Secrets.Default.UsosConsumerKeySecret, accessToken, accessTokenSecret, true);
+                keys.UsosConsumerKey, keys.UsosConsumerKeySecret, accessToken, accessTokenSecret, true);
+
             var response = await apiConnector.GetResponseFullResponseAsync(accessTokenUrl);
             return response;
         }

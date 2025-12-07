@@ -11,6 +11,8 @@ namespace StudentUsosServer.Controllers.V1
     [ApiController, Route("v{version:apiVersion}/CampusMap"), ApiVersion(1)]
     public class CampusMapController : ControllerBase
     {
+        const string whitelistedInstallationUrl = "https://usosapps.put.poznan.pl/";
+
         MainDBContext dbContext;
         ICampusMapRepository campusMapRepository;
 
@@ -20,7 +22,7 @@ namespace StudentUsosServer.Controllers.V1
             this.campusMapRepository = campusMapRepository;
         }
 
-        [HttpGet("CampusSvg"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpGet("CampusSvg"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public async Task<ActionResult<string>> GetCampusSvgAsync()
         {
             using StreamReader streamReader = new(Path.Combine(Directory.GetCurrentDirectory(), "Resources", "CampusMap", "CampusMap.svg"));
@@ -32,21 +34,21 @@ namespace StudentUsosServer.Controllers.V1
         /// Retrieves list of all buildings on the primary campus
         /// </summary>
         /// <returns></returns>
-        [HttpGet("BuildingsList"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpGet("BuildingsList"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public async Task<ActionResult<string>> GetBuildingsListAsync()
         {
             var buildingsJson = await campusMapRepository.GetBuildingsListRawJsonAsync();
             return Ok(buildingsJson);
         }
 
-        [HttpGet("FloorSvg"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpGet("FloorSvg"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public async Task<ActionResult<string>> GetFloorSvgAsync(string buildingId, string floor)
         {
             var svg = await campusMapRepository.GetFloorSvgAsync(buildingId, floor);
             return Ok(svg);
         }
 
-        [HttpGet("FloorData"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpGet("FloorData"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public ActionResult<List<RoomInfo>> GetFloorData(string buildingId, string floor)
         {
             var rooms = campusMapRepository.GetFloorData(buildingId, floor);
@@ -54,7 +56,7 @@ namespace StudentUsosServer.Controllers.V1
         }
 
         const int RootUserSuggestionWeight = 10;
-        [HttpPost("UserSuggestion"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpPost("UserSuggestion"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public ActionResult RegisterUserSuggestion(UserRoomInfoSuggestionDTO userRoomInfoSuggestionDto, [FromHeader] string installation, [FromHeader] string internalAccessToken)
         {
             var user = dbContext.Users.FirstOrDefault(x => x.Installation == installation && x.InternalAccessToken == internalAccessToken);
@@ -92,7 +94,7 @@ namespace StudentUsosServer.Controllers.V1
             return Ok();
         }
 
-        [HttpGet("BuildingAndFloorUserSuggestionVotes"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpGet("BuildingAndFloorUserSuggestionVotes"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public ActionResult<List<UserSuggestionVote>> GetBuildingAndFloorUserSuggestionVotes(string buildingId, string floor)
         {
             var data = campusMapRepository.GetFloorData(buildingId, floor);
@@ -108,7 +110,7 @@ namespace StudentUsosServer.Controllers.V1
             required public string StudentNumber { get; set; }
         }
 
-        [HttpPost("UpvoteUserSuggestion"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpPost("UpvoteUserSuggestion"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public async Task<ActionResult<List<UserSuggestionVote>>> UpvoteUserSuggestion(UserSuggestionVoteDto userSuggestionVoteDto,
             [FromHeader] string installation,
             [FromHeader] string internalAccessToken)
@@ -135,7 +137,7 @@ namespace StudentUsosServer.Controllers.V1
             return BadRequest();
         }
 
-        [HttpPost("DownvoteUserSuggestion"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpPost("DownvoteUserSuggestion"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public async Task<ActionResult<List<UserSuggestionVote>>> DownvoteUserSuggestion(UserSuggestionVoteDto userSuggestionVoteDto,
             [FromHeader] string installation,
             [FromHeader] string internalAccessToken)
@@ -162,7 +164,7 @@ namespace StudentUsosServer.Controllers.V1
             return BadRequest();
         }
 
-        [HttpGet("UsersUpvotes"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpGet("UsersUpvotes"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public ActionResult<List<UserSuggestionVote>> GetUsersUpvotes([FromHeader] string installation, [FromHeader] string internalAccessToken)
         {
             var user = dbContext.Users.FirstOrDefault(x => x.Installation == installation &&
@@ -176,7 +178,7 @@ namespace StudentUsosServer.Controllers.V1
             return Ok(result);
         }
 
-        [HttpGet("UsersDownvotes"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpGet("UsersDownvotes"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public ActionResult<List<UserSuggestionVote>> GetUsersDownvotes([FromHeader] string installation, [FromHeader] string internalAccessToken)
         {
             var user = dbContext.Users.FirstOrDefault(x => x.Installation == installation &&
@@ -199,7 +201,7 @@ namespace StudentUsosServer.Controllers.V1
             public required string RoomName { get; set; }
         }
 
-        [HttpPost("ImportFloorData"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full)]
+        [HttpPost("ImportFloorData"), AuthorizeAccessFilter(AuthorizeAccessFilter.Mode.Full, whitelistedInstallationUrl)]
         public ActionResult ImportFloorData(string json, string studentNumber, string installation, string buildingId, string floor)
         {
             var user = dbContext.Users.FirstOrDefault(x => x.StudentNumber == studentNumber);

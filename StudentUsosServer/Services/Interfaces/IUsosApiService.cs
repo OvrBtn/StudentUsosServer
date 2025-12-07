@@ -11,7 +11,7 @@
         /// <param name="accessToken"></param>
         /// <param name="accessTokenSecret"></param>
         /// <returns></returns>
-        public string GetSignedUsosUrl(string methodName, string installation, Dictionary<string, string> arguments, string accessToken = "", string accessTokenSecret = "");
+        public string? GetSignedUsosUrl(string methodName, string installation, Dictionary<string, string> arguments, string accessToken = "", string accessTokenSecret = "");
 
         /// <summary>
         /// Sends webrequest to USOS API
@@ -22,7 +22,7 @@
         /// <param name="accessToken"></param>
         /// <param name="accessTokenSecret"></param>
         /// <returns>USOS API response</returns>
-        public Task<string> SendRequestAsync(string methodName, Dictionary<string, string> arguments, string installation, string accessToken, string accessTokenSecret);
+        public Task<string?> SendRequestAsync(string methodName, Dictionary<string, string> arguments, string installation, string accessToken, string accessTokenSecret);
 
         /// <summary>
         /// Sends webrequest to USOS API and return full response of <see cref="HttpClient"/>

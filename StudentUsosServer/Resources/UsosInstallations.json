@@ -1,6 +1,740 @@
 ﻿[
   {
     "InstallationId": "0",
-    "InstallationUrl": "https://usosapps.put.poznan.pl/"
+    "InstallationUrl": "https://usosapps.put.poznan.pl/",
+    "IsSupported": true,
+    "LocalizedName": {
+      "pl": "Politechnika Poznańska",
+      "en": "The Poznan University of Technology"
+    }
+  },
+  {
+    "InstallationId": "1",
+    "InstallationUrl": "https://usosapps.amisns.edu.pl/",
+    "IsSupported": true,
+    "LocalizedName": {
+      "pl": "AMISNS",
+      "en": "AMISNS"
+    }
+  },
+  {
+    "InstallationId": "2",
+    "InstallationUrl": "https://usosapi.awf.wroc.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "AWF Wrocław",
+      "en": "AWF Wrocław"
+    }
+  },
+  {
+    "InstallationId": "3",
+    "InstallationUrl": "https://apps.ansb.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Nauk Stosowanych Stefana Batorego",
+      "en": "Akademia Nauk Stosowanych Stefana Batorego"
+    }
+  },
+  {
+    "InstallationId": "4",
+    "InstallationUrl": "https://usosapi.awf.krakow.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Wychowania Fizycznego im. Bronisława Czecha w Krakowie",
+      "en": "Akademia Wychowania Fizycznego im. Bronisława Czecha w Krakowie"
+    }
+  },
+  {
+    "InstallationId": "5",
+    "InstallationUrl": "https://usos-apps.uci.pb.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Politechnika Białostocka",
+      "en": "Bialystok University of Technology"
+    }
+  },
+  {
+    "InstallationId": "6",
+    "InstallationUrl": "https://usosapps.chat.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Chrześcijańska Akademia Teologiczna w Warszawie",
+      "en": "Chrześcijańska Akademia Teologiczna w Warszawie"
+    }
+  },
+  {
+    "InstallationId": "7",
+    "InstallationUrl": "https://usosapps.ujd.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Jana Długosza w Częstochowie",
+      "en": "Jan Dlugosz University in Czestochowa"
+    }
+  },
+  {
+    "InstallationId": "8",
+    "InstallationUrl": "https://usosapps.umlub.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Medyczny w Lublinie",
+      "en": "Medical University of Lublin"
+    }
+  },
+  {
+    "InstallationId": "9",
+    "InstallationUrl": "https://usosapps.at.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Teatralna w Warszawie",
+      "en": "National Academy of Dramatic Art in Warsaw"
+    }
+  },
+  {
+    "InstallationId": "10",
+    "InstallationUrl": "https://apps.pwste.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "PANS w Jarosławiu",
+      "en": "PANS w Jarosławiu"
+    }
+  },
+  {
+    "InstallationId": "11",
+    "InstallationUrl": "https://usosapps.sgh.waw.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Szkoła Główna Handlowa w Warszawie",
+      "en": "SGH Warsaw School of Economics"
+    }
+  },
+  {
+    "InstallationId": "12",
+    "InstallationUrl": "https://apps.asp.katowice.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akaedmia Sztuk Pięknych w Katowicach",
+      "en": "The Academy of Fine Arts and Design in Katowice"
+    }
+  },
+  {
+    "InstallationId": "13",
+    "InstallationUrl": "https://usosapps.amu.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet im. Adama Mickiewicza w Poznaniu",
+      "en": "The Adam Mickiewicz University in Poznan"
+    }
+  },
+  {
+    "InstallationId": "14",
+    "InstallationUrl": "https://usosapi.ans.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Nauk Stosowanych Angelusa Silesiusa",
+      "en": "The Angelus Silesius University of Applied Sciences"
+    }
+  },
+  {
+    "InstallationId": "15",
+    "InstallationUrl": "https://usosapps.wse.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Wyższa Szkoła Ekonomiczna w Białymstoku",
+      "en": "The Bialystok School of Economics"
+    }
+  },
+  {
+    "InstallationId": "16",
+    "InstallationUrl": "https://usosapi.tyszkiewicz.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Bielska Wyższa Szkoła im. J. Tyszkiewicza",
+      "en": "The Bielska Wyższa Szkoła im. J. Tyszkiewicza"
+    }
+  },
+  {
+    "InstallationId": "17",
+    "InstallationUrl": "https://usosapps.pbs.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Politechnika Bydgoska im. Jana i Jędrzeja Śniadeckich",
+      "en": "The Bydgoszcz University of Science and Technology"
+    }
+  },
+  {
+    "InstallationId": "18",
+    "InstallationUrl": "https://apps.usos.uksw.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Kardynała Stefana Wyszyńskiego",
+      "en": "The Cardinal Stefan Wyszynski University"
+    }
+  },
+  {
+    "InstallationId": "19",
+    "InstallationUrl": "https://appsusos.uek.krakow.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Ekonomiczny",
+      "en": "The Cracow University of Economic"
+    }
+  },
+  {
+    "InstallationId": "20",
+    "InstallationUrl": "https://usosapi.pcz.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Politechnika Czestochowska",
+      "en": "The Czestochowa University of Technology"
+    }
+  },
+  {
+    "InstallationId": "21",
+    "InstallationUrl": "https://usosapps.dsw.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersyet Dolnośląski DSW",
+      "en": "The DSW University of Lower Silesia"
+    }
+  },
+  {
+    "InstallationId": "22",
+    "InstallationUrl": "https://www.usosapi.amuz.bydgoszcz.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Muzyczna imienia Feliksa Nowowiejskiego w Bydgoszczy",
+      "en": "The Feliks Nowowiejski Academy of Music"
+    }
+  },
+  {
+    "InstallationId": "23",
+    "InstallationUrl": "https://apps.apoz.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Pożarnicza",
+      "en": "The Fire University"
+    }
+  },
+  {
+    "InstallationId": "24",
+    "InstallationUrl": "https://usosapi.usos.umg.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Morski w Gdyni",
+      "en": "The Gdynia Maritime University"
+    }
+  },
+  {
+    "InstallationId": "25",
+    "InstallationUrl": "https://apps.prawowroclaw.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Wyższa Szkoła Prawa",
+      "en": "The Helena Chodkowska University of Law in Wrocław"
+    }
+  },
+  {
+    "InstallationId": "26",
+    "InstallationUrl": "https://apps.wskm.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Wyższa Szkoła Kadr Menedżerskich",
+      "en": "The Higher School of Management Personnel"
+    }
+  },
+  {
+    "InstallationId": "27",
+    "InstallationUrl": "https://usosapi.ans-gniezno.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Nauk Stosowanych im. Hipolita Cegielskiego w Gnieźnie Uczelnia Państwowa",
+      "en": "The Hipolit Cegielski State University of Applied Sciences in Gniezno"
+    }
+  },
+  {
+    "InstallationId": "28",
+    "InstallationUrl": "https://apps.usos.uj.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Jagielloński",
+      "en": "The Jagiellonian University"
+    }
+  },
+  {
+    "InstallationId": "29",
+    "InstallationUrl": "https://usosapps.awf.katowice.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Wychowania Fizycznego w Katowicach",
+      "en": "The Jerzy Kukuczka Academy of Physical Education in Katowice"
+    }
+  },
+  {
+    "InstallationId": "30",
+    "InstallationUrl": "https://usosapi.ignatianum.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Ignatianum",
+      "en": "The Jesuit University Ignatianum in Krakow"
+    }
+  },
+  {
+    "InstallationId": "31",
+    "InstallationUrl": "https://api.ukw.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Kazimierza Wielkiego",
+      "en": "The Kazimierz Wielki University"
+    }
+  },
+  {
+    "InstallationId": "32",
+    "InstallationUrl": "https://api.usos.tu.kielce.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Politechnika Świętokrzyska",
+      "en": "The Kielce University of Technology"
+    }
+  },
+  {
+    "InstallationId": "33",
+    "InstallationUrl": "https://usosapps.kpu.krosno.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Państwowa Akademia Nauk Stosowanych w Krośnie",
+      "en": "The Krosno Academy of Applied Sciences"
+    }
+  },
+  {
+    "InstallationId": "34",
+    "InstallationUrl": "https://usosapps.wat.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Wojskowa Akademia Techniczna",
+      "en": "The Military University of Technology in Warsaw"
+    }
+  },
+  {
+    "InstallationId": "35",
+    "InstallationUrl": "https://usosapps.umk.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Mikołaja Kopernika",
+      "en": "The Nicolaus Copernicus University"
+    }
+  },
+  {
+    "InstallationId": "36",
+    "InstallationUrl": "https://usosapi.nwsm.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Niepubliczna Wyższa Szkoła Medyczna we Wrocławiu",
+      "en": "The Non-public School of Medicine in Wrocław"
+    }
+  },
+  {
+    "InstallationId": "37",
+    "InstallationUrl": "https://usosapps.po.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Politechnika Opolska",
+      "en": "The Opole University of Technology"
+    }
+  },
+  {
+    "InstallationId": "38",
+    "InstallationUrl": "https://usosapi.pwt.wroc.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Papieski Wydział Teologiczny we Wrocławiu",
+      "en": "The Pontifical Faculty of Theology in Wrocław"
+    }
+  },
+  {
+    "InstallationId": "39",
+    "InstallationUrl": "https://usosapi.upjp2.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Papieski Jana Pawła II w Krakowie",
+      "en": "The Pontifical University of John Paul II"
+    }
+  },
+  {
+    "InstallationId": "40",
+    "InstallationUrl": "https://usosapps.awf.poznan.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Wychowania Fizycznego im. Eugeniusza Piaseckiego w Poznaniu",
+      "en": "The Poznan University of Physical Education"
+    }
+  },
+  {
+    "InstallationId": "42",
+    "InstallationUrl": "https://usosapps.ue.poznan.pl/",
+    "IsSupported": true,
+    "LocalizedName": {
+      "pl": "Uniwersytet Ekonomiczny w Poznaniu",
+      "en": "The Poznań University of Economics and Business"
+    }
+  },
+  {
+    "InstallationId": "43",
+    "InstallationUrl": "https://usosapps.prz.edu.pl/",
+    "IsSupported": true,
+    "LocalizedName": {
+      "pl": "Politechnika Rzeszowska",
+      "en": "The Rzeszów University of Technology"
+    }
+  },
+  {
+    "InstallationId": "44",
+    "InstallationUrl": "https://usosapi.polsl.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Politechnika Śląska",
+      "en": "The Silesian University of Technology"
+    }
+  },
+  {
+    "InstallationId": "45",
+    "InstallationUrl": "https://usosapi.ans.pila.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Nauk Stosowanych im. Stanisława Staszica w Pile",
+      "en": "The Stanisław Staszic State University of Applied Sciences in Piła"
+    }
+  },
+  {
+    "InstallationId": "46",
+    "InstallationUrl": "https://usosapps.konin.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Nauk Stosowanych w Koninie",
+      "en": "The State University of Applied Sciences"
+    }
+  },
+  {
+    "InstallationId": "47",
+    "InstallationUrl": "https://usosapi.pans.glogow.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Państwowa Akademia Nauk Stosowanych w Głogowie",
+      "en": "The State University of Applied Sciences in Głogów"
+    }
+  },
+  {
+    "InstallationId": "48",
+    "InstallationUrl": "https://usosapps.ansleszno.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Nauk Stosowanych w Lesznie",
+      "en": "The State University of Applied Sciences in Leszno"
+    }
+  },
+  {
+    "InstallationId": "49",
+    "InstallationUrl": "https://usosapi.tu.koszalin.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Politechnika Koszalińska",
+      "en": "The Technical University of Koszalin"
+    }
+  },
+  {
+    "InstallationId": "50",
+    "InstallationUrl": "https://usosapi.panschelm.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Państwowa Akademia Nauk Stosowanych w Chełmie",
+      "en": "The University College of Applied Sciences in Chelm"
+    }
+  },
+  {
+    "InstallationId": "51",
+    "InstallationUrl": "https://usosapps.uth.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uczelnia Techniczno-Handlowa im. Heleny Chodkowskiej",
+      "en": "The University University of Technology and Economics"
+    }
+  },
+  {
+    "InstallationId": "52",
+    "InstallationUrl": "https://apps.aps.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet APS",
+      "en": "The University of APS"
+    }
+  },
+  {
+    "InstallationId": "53",
+    "InstallationUrl": "https://usosapi.ur.krakow.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Rolniczy",
+      "en": "The University of Agriculture"
+    }
+  },
+  {
+    "InstallationId": "54",
+    "InstallationUrl": "https://usosapps.uwb.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet w Białymstoku",
+      "en": "The University of Bialystok"
+    }
+  },
+  {
+    "InstallationId": "55",
+    "InstallationUrl": "https://usosapi.ubb.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Bielsko-Bialski",
+      "en": "The University of Bielsko-Biała"
+    }
+  },
+  {
+    "InstallationId": "56",
+    "InstallationUrl": "https://usosapps.ue.katowice.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Ekonomiczny w Katowicach",
+      "en": "The University of Economics in Katowice"
+    }
+  },
+  {
+    "InstallationId": "57",
+    "InstallationUrl": "https://usosapi.wsge.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Wyższa Szkoła Gospodarki Euroregionalnej im. Alcide De Gasperi",
+      "en": "The University of Euroregional Economy in Józefów - Warsaw"
+    }
+  },
+  {
+    "InstallationId": "58",
+    "InstallationUrl": "https://usosapps.uni.lodz.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Łódzki",
+      "en": "The University of Lodz"
+    }
+  },
+  {
+    "InstallationId": "59",
+    "InstallationUrl": "https://apps.umcs.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Marii Curie-Skłodowskiej",
+      "en": "The University of Maria Curie-Skłodowska"
+    }
+  },
+  {
+    "InstallationId": "60",
+    "InstallationUrl": "https://usosapps.uni.opole.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Opolski",
+      "en": "The University of Opole"
+    }
+  },
+  {
+    "InstallationId": "61",
+    "InstallationUrl": "https://apps.wsb.net.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Wyższa Szkoła Bezpieczeństwa",
+      "en": "The University of Security in Poznań"
+    }
+  },
+  {
+    "InstallationId": "62",
+    "InstallationUrl": "https://apps.uws.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet w Siedlcach",
+      "en": "The University of Siedlce"
+    }
+  },
+  {
+    "InstallationId": "63",
+    "InstallationUrl": "https://usosapps.us.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Śląski w Katowicach",
+      "en": "The University of Silesia in Katowice"
+    }
+  },
+  {
+    "InstallationId": "64",
+    "InstallationUrl": "https://apps.uwm.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Warmińsko-Mazurski w Olsztynie",
+      "en": "The University of Warmia and Mazury in Olsztyn"
+    }
+  },
+  {
+    "InstallationId": "65",
+    "InstallationUrl": "https://usosapps.uw.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Warszawski",
+      "en": "The University of Warsaw"
+    }
+  },
+  {
+    "InstallationId": "66",
+    "InstallationUrl": "https://usosapps.uni.wroc.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Wrocławski",
+      "en": "The University of Wroclaw"
+    }
+  },
+  {
+    "InstallationId": "67",
+    "InstallationUrl": "https://usosapps.uken.krakow.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Komisji Edukacji Narodowej",
+      "en": "The University of the National Education Commission"
+    }
+  },
+  {
+    "InstallationId": "68",
+    "InstallationUrl": "https://apps.osw.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Finansów i Biznesu Vistula",
+      "en": "The Vistula University"
+    }
+  },
+  {
+    "InstallationId": "69",
+    "InstallationUrl": "https://apps.usos.pw.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Politechnika Warszawska",
+      "en": "The Warsaw University of Technology"
+    }
+  },
+  {
+    "InstallationId": "70",
+    "InstallationUrl": "https://usosapps.ue.wroc.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Ekonomiczny we Wrocławiu",
+      "en": "The Wroclaw University of Economics"
+    }
+  },
+  {
+    "InstallationId": "71",
+    "InstallationUrl": "https://apps.usos.pwr.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Politechnika Wrocławska",
+      "en": "The Wroclaw University of Science and Technology"
+    }
+  },
+  {
+    "InstallationId": "72",
+    "InstallationUrl": "https://usosapi.umw.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Medyczny im. Piastów Śląskich we Wrocławiu",
+      "en": "The Wrocław Medical University"
+    }
+  },
+  {
+    "InstallationId": "73",
+    "InstallationUrl": "https://usosapps.upwr.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwersytet Przyrodniczy we Wrocławiu",
+      "en": "The Wrocław University of Environmental and Life Science"
+    }
+  },
+  {
+    "InstallationId": "74",
+    "InstallationUrl": "https://apps.wste.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Wyższa Szkoła Turystyki i Ekologii",
+      "en": "The Wyższa Szkoła Turystyki i Ekologii"
+    }
+  },
+  {
+    "InstallationId": "75",
+    "InstallationUrl": "https://usosapi.up-sanok.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "UP Sanok",
+      "en": "UP Sanok"
+    }
+  },
+  {
+    "InstallationId": "76",
+    "InstallationUrl": "https://api.pwsip.edu.pl/usosapps/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Łomżyńska",
+      "en": "University of Lomza"
+    }
+  },
+  {
+    "InstallationId": "77",
+    "InstallationUrl": "https://usosapps.chopin.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Uniwerstytet Muzyczny Fryderyka Chopina",
+      "en": "Uniwerstytet Muzyczny Fryderyka Chopina"
+    }
+  },
+  {
+    "InstallationId": "78",
+    "InstallationUrl": "https://usosapps.vistula.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Akademia Finansów i Biznesu Vistula z siedzibą w Warszawie",
+      "en": "VISTULA UNIVERSITY"
+    }
+  },
+  {
+    "InstallationId": "79",
+    "InstallationUrl": "https://usos-api.wab.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Wrocławska Akademia Biznesu w Naukach Stosowanych",
+      "en": "WAB"
+    }
+  },
+  {
+    "InstallationId": "80",
+    "InstallationUrl": "https://usosapi.apeiron.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Wyższa Szkoła Bezpieczeństwa Publicznego i Indywidualnego „Apeiron” w Krakowie",
+      "en": "Wyższa Szkoła Bezpieczeństwa Publicznego i Indywidualnego „Apeiron” w Krakowie"
+    }
+  },
+  {
+    "InstallationId": "81",
+    "InstallationUrl": "https://usosapps.aws.edu.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "Wyższa Szkoła Kryminologii i Penitencjarystyki w Warszawie",
+      "en": "Wyższa Szkoła Kryminologii i Penitencjarystyki w Warszawie"
+    }
+  },
+  {
+    "InstallationId": "82",
+    "InstallationUrl": "https://apps.nencki.usos.pcss.pl/",
+    "IsSupported": false,
+    "LocalizedName": {
+      "pl": "http://apps.nencki.usos.pcss.pl/",
+      "en": "http://apps.nencki.usos.pcss.pl/"
+    }
   }
 ]
